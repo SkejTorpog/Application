@@ -13,24 +13,24 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ListBox Grid.Row="0" ItemsSource="{Binding Functions}" SelectedValue="{Binding SelectedFunction}">
+        <ListBox Grid.Row="0" ItemsSource="{Binding Functions}" SelectedValue="{Binding SelectedFunction, Mode=TwoWay}">
 
         </ListBox>
 
         <StackPanel Grid.Row="1">
-            <TextBlock Text="Аргумент а"></TextBlock>
-            <TextBox Text="{Binding Path=Model.A,UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <TextBlock Text="Аргумент б"></TextBlock>
-            <TextBox Text="{Binding Path=Model.B}"></TextBox>
-            <TextBlock Text="Аргумент с"></TextBlock>
-            <ComboBox ItemsSource="{Binding Сoefficients}" SelectedValue="{Binding Path=Model.C}">
+            <TextBlock Text="Аргумент А"></TextBlock>
+            <TextBox Text="{Binding Path=SelectedModel.A,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Text="Аргумент Б"></TextBlock>
+            <TextBox Text="{Binding Path=SelectedModel.B}"></TextBox>
+            <TextBlock Text="Аргумент С"></TextBlock>
+            <ComboBox ItemsSource="{Binding Сoefficients}" SelectedValue="{Binding Path=SelectedModel.C}">
             </ComboBox>
             <Button Command="{Binding Command}" Height="20"></Button>
         </StackPanel>
 
-        <DataGrid Grid.Row="2" ItemsSource="{Binding ModelsList}" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="2" ItemsSource="{Binding ModelsList}" SelectedItem="{Binding SelectedModel}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding Fxy, Mode=TwoWay}"  Header="F(x,y)"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Fxy, Mode=TwoWay}"  Header="F(x,y)"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding X, Mode=TwoWay}" Header="x" IsReadOnly="false"/>
                 <DataGridTextColumn Binding="{Binding Y, Mode=TwoWay}" Header="y" IsReadOnly="false"/>
             </DataGrid.Columns>

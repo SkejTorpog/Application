@@ -1,45 +1,77 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace WpfApp6
 {
     public class AppViewModel
     {
-        private MathModel _model;
+        private MathModel _selectedModel;
         private string _selectedFunction;
+        private ObservableCollection<int> _coefficients;
 
         public List<MathModel> ModelsList { get; set; }
-        public BindingList<string> Functions { get; set; }
-        public List<int> Сoefficients { get; set; }
-
-
-        private RelayCommand command;
-        public RelayCommand Command
+        public ObservableCollection<string> Functions { get; set; }
+        public ObservableCollection<int> Сoefficients
         {
             get
             {
-                return command ?? (command = new RelayCommand(obj =>
-                System.Diagnostics.Trace.WriteLine(
-                   _model.A + _model.B + _model.C)));
+                return _coefficients;
+            }
+            set
+            {
+                _coefficients = value;
             }
         }
 
-        public MathModel Model
+        public MathModel SelectedModel
         {
-            get { return _model; }
-            set { _model = value; }
+            get
+            {
+                return _selectedModel;
+            }
+            set
+            {
+                _selectedModel = value;
+            }
         }
 
         public string SelectedFunction
         {
-            get { return _selectedFunction; }
+            get
+            {
+                return SelectedModel.Func;
+            }
             set
             {
-                _selectedFunction = value;
-                System.Diagnostics.Trace.WriteLine(_selectedFunction);
+                SelectedModel.Func = value;
+                
+                System.Diagnostics.Trace.WriteLine(SelectedModel.Func);
+                switch (SelectedModel.Func)
+                {
+                    case "Линейная":
+                        UpdateCoefficients(Сoefficients, 1);
+                        break;
+                    case "Квадратичная":
+                        UpdateCoefficients(Сoefficients, 2);
+                        break;
+                    case "Кубическая":
+                        UpdateCoefficients(Сoefficients, 3);
+                        break;
+                    case "4-ой степени":
+                        UpdateCoefficients(Сoefficients, 4);
+                        break;
+                    case "5-ой степени":
+                        UpdateCoefficients(Сoefficients, 5);
+                        break;
+                }
+
+                OnPropertyChanged("SelectedFunction");
+                //System.Diagnostics.Trace.WriteLine(_coefficients[1]);
             }
         }
 
@@ -50,16 +82,16 @@ namespace WpfApp6
                 new MathModel()
             };
 
-            _model = new MathModel();
-            Functions = new BindingList<string> { 
+            _selectedModel = ModelsList[0];
+            Functions = new ObservableCollection<string> {
                 new string("Линейная"),
-                new string("Квадратичная"), 
+                new string("Квадратичная"),
                 new string("Кубическая"),
                 new string("4-ой степени"),
                 new string("5-ой степени")
             };
-
-            Сoefficients = new List<int>
+            
+            Сoefficients = new ObservableCollection<int>
             {
                 1,
                 2,
@@ -67,6 +99,25 @@ namespace WpfApp6
                 4,
                 5
             };
+            SelectedFunction = Functions[0];
+        }
+
+        private void UpdateCoefficients(ObservableCollection<int> list, int power)
+        {
+            int value = (int)Math.Pow(10,power-1);
+            for (int i = 0; i < list.Count; i++)
+            {
+                list[i] = (i + 1) * value;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
         }
     }
 }
