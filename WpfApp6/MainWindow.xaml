@@ -1,0 +1,40 @@
+﻿<Window x:Class="WpfApp6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp6"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <ListBox Grid.Row="0" ItemsSource="{Binding Functions}" SelectedValue="{Binding SelectedFunction}">
+
+        </ListBox>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Аргумент а"></TextBlock>
+            <TextBox Text="{Binding Path=Model.A,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Text="Аргумент б"></TextBlock>
+            <TextBox Text="{Binding Path=Model.B}"></TextBox>
+            <TextBlock Text="Аргумент с"></TextBlock>
+            <ComboBox ItemsSource="{Binding Сoefficients}" SelectedValue="{Binding Path=Model.C}">
+            </ComboBox>
+            <Button Command="{Binding Command}" Height="20"></Button>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" ItemsSource="{Binding ModelsList}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn  Binding="{Binding Fxy, Mode=TwoWay}"  Header="F(x,y)"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding X, Mode=TwoWay}" Header="x" IsReadOnly="false"/>
+                <DataGridTextColumn Binding="{Binding Y, Mode=TwoWay}" Header="y" IsReadOnly="false"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </Grid>
+</Window>
