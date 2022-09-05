@@ -5,7 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp6"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="DarkGray">
+    <!--<Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Background" Value="Gray" />
+        </Style>
+    </Window.Resources>-->
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -13,26 +23,30 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ListBox Grid.Row="0" ItemsSource="{Binding Functions}" SelectedValue="{Binding SelectedFunction, Mode=TwoWay}">
-
+        <ListBox Background="Gray" Grid.Row="0" ItemsSource="{Binding Path=SelectedRealModel.ModelTemplates}"
+                 SelectedValue="{Binding Path=SelectedRealModel.SelectedTemplate}" FontSize="16">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" Foreground="White"></TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <StackPanel Grid.Row="1">
             <TextBlock Text="Аргумент А"></TextBlock>
-            <TextBox Text="{Binding Path=SelectedModel.A,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Text="{Binding Path=SelectedRealModel.SelectedTemplate.A,UpdateSourceTrigger=PropertyChanged}" FontSize="20"></TextBox>
             <TextBlock Text="Аргумент Б"></TextBlock>
-            <TextBox Text="{Binding Path=SelectedModel.B}"></TextBox>
+            <TextBox Text="{Binding Path=SelectedRealModel.SelectedTemplate.B}"></TextBox>
             <TextBlock Text="Аргумент С"></TextBlock>
-            <ComboBox ItemsSource="{Binding Сoefficients}" SelectedValue="{Binding Path=SelectedModel.C}">
+            <ComboBox ItemsSource="{Binding Сoefficients}" SelectedValue="{Binding Path=SelectedRealModel.SelectedTemplate.C}">
             </ComboBox>
-            <Button Command="{Binding Command}" Height="20"></Button>
         </StackPanel>
 
-        <DataGrid Grid.Row="2" ItemsSource="{Binding ModelsList}" SelectedItem="{Binding SelectedModel}" AutoGenerateColumns="False">
+        <DataGrid Background="Gray" Grid.Row="2" ItemsSource="{Binding RealModelsList}" SelectedItem="{Binding SelectedRealModel}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Fxy, Mode=TwoWay}"  Header="F(x,y)"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding X, Mode=TwoWay}" Header="x" IsReadOnly="false"/>
-                <DataGridTextColumn Binding="{Binding Y, Mode=TwoWay}" Header="y" IsReadOnly="false"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Fxy}"  Header="F(x,y)" FontSize="16"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding X}" Header="x" IsReadOnly="false"/>
+                <DataGridTextColumn Binding="{Binding Y}" Header="y" IsReadOnly="false"/>
             </DataGrid.Columns>
         </DataGrid>
         

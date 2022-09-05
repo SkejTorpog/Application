@@ -24,7 +24,7 @@ namespace WpfApp6
         {
             InitializeComponent();
 
-            DataContext = new AppViewModel();
+            DataContext = new ApplicationVM();
         }
     }
 }
