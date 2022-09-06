@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp6"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="550" Width="800" FontSize="18" Background="#FFE0E0E0">
     <!--<Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="16" />
@@ -15,59 +15,63 @@
             <Setter Property="Background" Value="Gray" />
         </Style>
     </Window.Resources>-->
-    
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ListBox 
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Функция:" Grid.Row="0" Margin="10,0" FontWeight="Normal"/>
+            <ListBox
             ItemsSource="{Binding Path=SelectedModel.Functions}"
-            SelectedValue="{Binding Path=SelectedModel.SelectedFunction}"            
-            Grid.Row="0"                                         
-            FontSize="16">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}"></TextBlock>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
-        <StackPanel Grid.Row="1">
-            <TextBlock Text="Аргумент А"></TextBlock>
+            SelectedValue="{Binding Path=SelectedModel.SelectedFunction}"
+            Margin="10,0,10,10"
+            Grid.Row="0" Background="#FFF8F3FF">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock Text="Аргумент А:" Margin="10,0"></TextBlock>
             <TextBox 
                 Text="{Binding Path=SelectedModel.SelectedFunction.A,UpdateSourceTrigger=PropertyChanged}" 
-                FontSize="20">
+                Margin="10,0"
+                FontSize="20"
+                Background="#FFF8F3FF">
             </TextBox>
-            <TextBlock Text="Аргумент Б"></TextBlock>
+            <TextBlock Text="Аргумент B:" Margin="10,0"></TextBlock>
             <TextBox 
-                Text="{Binding Path=SelectedModel.SelectedFunction.B, UpdateSourceTrigger=PropertyChanged}">
+                Text="{Binding Path=SelectedModel.SelectedFunction.B, UpdateSourceTrigger=PropertyChanged}"
+                Margin="10,0"
+                Background="#FFF8F3FF">
             </TextBox>
-            <TextBlock Text="Аргумент С"></TextBlock>
+            <TextBlock Text="Аргумент С:" Margin="10,0"></TextBlock>
             <ComboBox 
                 ItemsSource="{Binding Path=SelectedModel.Coefficients}" 
-                SelectedValue="{Binding Path=SelectedModel.SelectedFunction.C}">
+                SelectedValue="{Binding Path=SelectedModel.SelectedFunction.C}"
+                Margin="10,0">
             </ComboBox>
         </StackPanel>
 
         <DataGrid 
             ItemsSource="{Binding Models}" 
             SelectedItem="{Binding SelectedModel}" 
-            Grid.Row="2" 
-            AutoGenerateColumns="False">
+            Grid.Row="1" 
+            AutoGenerateColumns="False" 
+            Margin="10,10">
             <DataGrid.Columns>
-                <DataGridTextColumn
+                <DataGridTextColumn Width="*"
                     Binding="{Binding Path=SelectedFunction.Fxy}" 
                     Header="F(x,y)" 
-                    IsReadOnly="True" 
-                    FontSize="16" />
-                <DataGridTextColumn 
+                    IsReadOnly="True" />
+                <DataGridTextColumn Width="*"
                     Binding="{Binding Path=SelectedFunction.X, UpdateSourceTrigger=PropertyChanged}" 
                     Header="x" 
                     IsReadOnly="false"/>
-                <DataGridTextColumn 
+                <DataGridTextColumn Width="*"
                     Binding="{Binding Path=SelectedFunction.Y, UpdateSourceTrigger=PropertyChanged}" 
                     Header="y" 
                     IsReadOnly="false"/>

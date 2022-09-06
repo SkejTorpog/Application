@@ -56,6 +56,8 @@ namespace WpfApp6
             {
                 1,2,3,4,5
             };
+
+            SelectedFunction = Functions[0];
         }
 
         private void UpdateCoefficients(ObservableCollection<int> list, int power)
