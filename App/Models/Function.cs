@@ -4,12 +4,12 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace WpfApp6
+namespace App.Models
 {
     /// <summary>
     /// Класс, хранящий информацию о функции: название, коэффициенты, а также значение F(x,y).
     /// </summary>
-    public class Function: INotifyPropertyChanged
+    public class Function : INotifyPropertyChanged
     {
         private string _name;
         private int _a;
@@ -100,7 +100,7 @@ namespace WpfApp6
         /// <summary>
         /// Возвращает и задает значение Fxy.
         /// </summary>
-        public int Fxy 
+        public int Fxy
         {
             get { return _fxy; }
             set

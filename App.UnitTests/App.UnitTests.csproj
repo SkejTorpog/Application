@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WpfApp6\WpfApp6.csproj" />
+    <ProjectReference Include="..\WpfApp6\App.csproj" />
   </ItemGroup>
 
 </Project>

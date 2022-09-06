@@ -1,6 +1,6 @@
 using System;
 using Xunit;
-using WpfApp6;
+using App.Models;
 
 namespace App.UnitTests
 {
