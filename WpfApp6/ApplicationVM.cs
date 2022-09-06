@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -16,18 +17,16 @@ namespace WpfApp6
             set
             {
                 _selectedRealModel = value;
-                //OnPropertyChanged("SelectedRealModel");
             }
         }
         
         public List<RealModel> RealModelsList { get; set; }
-        
+
         public ApplicationVM()
         {
             RealModelsList = new List<RealModel>() { new RealModel() };
             _selectedRealModel = RealModelsList[0];
         }
-
         //public event PropertyChangedEventHandler PropertyChanged;
         //public void OnPropertyChanged([CallerMemberName] string prop = "")
         //{

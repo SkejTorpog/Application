@@ -36,17 +36,17 @@
             <TextBlock Text="Аргумент А"></TextBlock>
             <TextBox Text="{Binding Path=SelectedRealModel.SelectedTemplate.A,UpdateSourceTrigger=PropertyChanged}" FontSize="20"></TextBox>
             <TextBlock Text="Аргумент Б"></TextBlock>
-            <TextBox Text="{Binding Path=SelectedRealModel.SelectedTemplate.B}"></TextBox>
+            <TextBox Text="{Binding Path=SelectedRealModel.SelectedTemplate.B, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock Text="Аргумент С"></TextBlock>
-            <ComboBox ItemsSource="{Binding Сoefficients}" SelectedValue="{Binding Path=SelectedRealModel.SelectedTemplate.C}">
+            <ComboBox ItemsSource="{Binding Path=SelectedRealModel.Coefficients}" SelectedValue="{Binding Path=SelectedRealModel.SelectedTemplate.C}">
             </ComboBox>
         </StackPanel>
 
         <DataGrid Background="Gray" Grid.Row="2" ItemsSource="{Binding RealModelsList}" SelectedItem="{Binding SelectedRealModel}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=SelectedTemplate.Fxy}"  Header="F(x,y)" FontSize="16"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Path=SelectedTemplate.X}" Header="x" IsReadOnly="false"/>
-                <DataGridTextColumn Binding="{Binding Path=SelectedTemplate.Y}" Header="y" IsReadOnly="false"/>
+                <DataGridTextColumn Binding="{Binding Path=SelectedTemplate.X, UpdateSourceTrigger=PropertyChanged}" Header="x" IsReadOnly="false"/>
+                <DataGridTextColumn Binding="{Binding Path=SelectedTemplate.Y, UpdateSourceTrigger=PropertyChanged}" Header="y" IsReadOnly="false"/>
             </DataGrid.Columns>
         </DataGrid>
         
