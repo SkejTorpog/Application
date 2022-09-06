@@ -6,7 +6,7 @@ using System.Text;
 
 namespace WpfApp6
 {
-    public class ModelTemplate: INotifyPropertyChanged
+    public class Function: INotifyPropertyChanged
     {
         private string _name;
         private int _a;

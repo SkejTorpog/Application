@@ -5,22 +5,22 @@ using System.Text;
 
 namespace WpfApp6
 {
-    public class RealModel
+    public class Model
     {
-        private ModelTemplate _selectedTemplate;
+        private Function _selectedFunction;
 
-        public ObservableCollection<ModelTemplate> ModelTemplates { get; set; }
+        public ObservableCollection<Function> Functions { get; set; }
 
         public ObservableCollection<int> Coefficients { get; set; }
 
-        public ModelTemplate SelectedTemplate
+        public Function SelectedFunction
         {
-            get { return _selectedTemplate; }
+            get { return _selectedFunction; }
             set
             {
-                _selectedTemplate = value;
+                _selectedFunction = value;
 
-                switch (SelectedTemplate?.Name)
+                switch (SelectedFunction?.Name)
                 {
                     case "Линейная":
                         UpdateCoefficients(Coefficients, 1);
@@ -38,20 +38,18 @@ namespace WpfApp6
                         UpdateCoefficients(Coefficients, 5);
                         break;
                 }
-                System.Diagnostics.Trace.WriteLine(SelectedTemplate?.Name);
-                System.Diagnostics.Trace.WriteLine(_selectedTemplate.Name);
             }
         }
 
-        public RealModel()
+        public Model()
         {
-            ModelTemplates = new ObservableCollection<ModelTemplate>()
+            Functions = new ObservableCollection<Function>()
             {
-                new ModelTemplate { Name = "Линейная" },
-                new ModelTemplate { Name = "Квадратичная" },
-                new ModelTemplate { Name = "Кубическая" },
-                new ModelTemplate { Name = "4-ой степени" },
-                new ModelTemplate { Name = "5-ой степени" },
+                new Function { Name = "Линейная" },
+                new Function { Name = "Квадратичная" },
+                new Function { Name = "Кубическая" },
+                new Function { Name = "4-ой степени" },
+                new Function { Name = "5-ой степени" },
             };
 
             Coefficients = new ObservableCollection<int>

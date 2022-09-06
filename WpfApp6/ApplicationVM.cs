@@ -7,33 +7,25 @@ using System.Text;
 
 namespace WpfApp6
 {
-    public class ApplicationVM //: INotifyPropertyChanged
+    public class ApplicationVM
     {
-        private RealModel _selectedRealModel;
+        private Model _selectedModel;
 
-        public RealModel SelectedRealModel
+        public Model SelectedModel
         {
-            get { return _selectedRealModel; }
+            get { return _selectedModel; }
             set
             {
-                _selectedRealModel = value;
+                _selectedModel = value;
             }
         }
         
-        public List<RealModel> RealModelsList { get; set; }
+        public List<Model> Models { get; set; }
 
         public ApplicationVM()
         {
-            RealModelsList = new List<RealModel>() { new RealModel() };
-            _selectedRealModel = RealModelsList[0];
-        }
-        //public event PropertyChangedEventHandler PropertyChanged;
-        //public void OnPropertyChanged([CallerMemberName] string prop = "")
-        //{
-        //    if (PropertyChanged != null)
-        //    {
-        //        PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        //    }
-        //}
+            Models = new List<Model>() { new Model() };
+            _selectedModel = Models[0];
+        }        
     }
 }
