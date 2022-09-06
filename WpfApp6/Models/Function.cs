@@ -6,6 +6,9 @@ using System.Text;
 
 namespace WpfApp6
 {
+    /// <summary>
+    /// Класс, хранящий информацию о функции: название, коэффициенты, а также значение F(x,y).
+    /// </summary>
     public class Function: INotifyPropertyChanged
     {
         private string _name;
@@ -16,6 +19,9 @@ namespace WpfApp6
         private int _y;
         private int _fxy;
 
+        /// <summary>
+        /// Возвращает и задает название функции. При изменении данного поля также пересчитывается значение F(x,y).
+        /// </summary>
         public string Name
         {
             get { return _name; }
@@ -26,6 +32,9 @@ namespace WpfApp6
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает коэффициент А. При изменении данного поля также пересчитывается значение F(x,y).
+        /// </summary>
         public int A
         {
             get { return _a; }
@@ -35,6 +44,10 @@ namespace WpfApp6
                 CalculateFunction();
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает коэффициент B. При изменении данного поля также пересчитывается значение F(x,y).
+        /// </summary>
         public int B
         {
             get { return _b; }
@@ -44,6 +57,10 @@ namespace WpfApp6
                 CalculateFunction();
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает коэффициент C. При изменении данного поля также пересчитывается значение F(x,y).
+        /// </summary>
         public int C
         {
             get { return _c; }
@@ -53,6 +70,10 @@ namespace WpfApp6
                 CalculateFunction();
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает значение X. При изменении данного поля также пересчитывается значение F(x,y).
+        /// </summary>
         public int X
         {
             get { return _x; }
@@ -62,6 +83,10 @@ namespace WpfApp6
                 CalculateFunction();
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает значение Y. При изменении данного поля также пересчитывается значение F(x,y).
+        /// </summary>
         public int Y
         {
             get { return _y; }
@@ -71,6 +96,10 @@ namespace WpfApp6
                 CalculateFunction();
             }
         }
+
+        /// <summary>
+        /// Возвращает и задает значение Fxy.
+        /// </summary>
         public int Fxy 
         {
             get { return _fxy; }
@@ -81,7 +110,10 @@ namespace WpfApp6
             }
         }
 
-        private void CalculateFunction()
+        /// <summary>
+        /// Вычисляет значение Fxy, в зависимости от названия функции.
+        /// </summary>
+        public void CalculateFunction()
         {
             switch (_name)
             {

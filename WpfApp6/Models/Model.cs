@@ -5,14 +5,28 @@ using System.Text;
 
 namespace WpfApp6
 {
+    /// <summary>
+    /// Класс представляющий модель, которая хранит коллекцию 
+    /// доступных функций, а также доступный список коэффициентов.
+    /// </summary>
     public class Model
     {
         private Function _selectedFunction;
 
+        /// <summary>
+        /// Возвращает и задает коллекцию доступных функций.
+        /// </summary>
         public ObservableCollection<Function> Functions { get; set; }
 
+        /// <summary>
+        /// Возвращает и задает коллекцию доступных коэффициентов.
+        /// </summary>
         public ObservableCollection<int> Coefficients { get; set; }
 
+        /// <summary>
+        /// Возвращает и задает выбранную функцию. При изменении данного поля, 
+        /// также обновляется коллекция доступных коэффициентов.
+        /// </summary>
         public Function SelectedFunction
         {
             get { return _selectedFunction; }
@@ -41,6 +55,9 @@ namespace WpfApp6
             }
         }
 
+        /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
         public Model()
         {
             Functions = new ObservableCollection<Function>()
@@ -60,12 +77,17 @@ namespace WpfApp6
             SelectedFunction = Functions[0];
         }
 
-        private void UpdateCoefficients(ObservableCollection<int> list, int power)
+        /// <summary>
+        /// Обновляет коллекцию доступных коэффициентов.
+        /// </summary>
+        /// <param name="collection">Коллекция для изменения</param>
+        /// <param name="power">Степень числа</param>
+        private void UpdateCoefficients(ObservableCollection<int> collection, int power)
         {
             int value = (int)Math.Pow(10, power - 1);
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < collection.Count; i++)
             {
-                list[i] = (i + 1) * value;
+                collection[i] = (i + 1) * value;
             }
         }
     }
