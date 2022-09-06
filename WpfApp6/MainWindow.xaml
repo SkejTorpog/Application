@@ -44,9 +44,9 @@
 
         <DataGrid Background="Gray" Grid.Row="2" ItemsSource="{Binding RealModelsList}" SelectedItem="{Binding SelectedRealModel}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Fxy}"  Header="F(x,y)" FontSize="16"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding X}" Header="x" IsReadOnly="false"/>
-                <DataGridTextColumn Binding="{Binding Y}" Header="y" IsReadOnly="false"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=SelectedTemplate.Fxy}"  Header="F(x,y)" FontSize="16"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=SelectedTemplate.X}" Header="x" IsReadOnly="false"/>
+                <DataGridTextColumn Binding="{Binding Path=SelectedTemplate.Y}" Header="y" IsReadOnly="false"/>
             </DataGrid.Columns>
         </DataGrid>
         
