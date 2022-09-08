@@ -39,6 +39,7 @@ namespace App.ViewModels
         /// </summary>
         public ApplicationVM()
         {
+            //Models = new List<Model>() { new Model() };
             Models = new List<Model>() { new Model() };
             _selectedModel = Models[0];
         }

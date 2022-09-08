@@ -64,7 +64,7 @@
                 Margin="10,0">
             </ComboBox>
         </StackPanel>
-        <DataGrid 
+        <!--<DataGrid            
             ItemsSource="{Binding Models}" 
             SelectedItem="{Binding SelectedModel}" 
             Grid.Row="1" 
@@ -76,16 +76,7 @@
                     Width="*"
                     Binding="{Binding Path=SelectedFunction.Fxy}" 
                     Header="F(x,y)" 
-                    IsReadOnly="True">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="TextChanged">
-                            <i:InvokeCommandAction
-                            Command="{Binding Test}"
-                            PassEventArgsToCommand="True"
-                            />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </DataGridTextColumn>
+                    IsReadOnly="True"/>
                 <DataGridTextColumn Width="*"
                     Binding="{Binding Path=SelectedFunction.X, UpdateSourceTrigger=PropertyChanged}" 
                     Header="x" 
@@ -95,6 +86,49 @@
                     Header="y" 
                     IsReadOnly="false"/>
             </DataGrid.Columns>
-        </DataGrid>
+        </DataGrid>-->
+        <DockPanel Grid.Row="1" >
+            <ListBox DockPanel.Dock="Left"  Margin="10" ItemsSource="{Binding Models}" SelectedItem="{Binding SelectedModel}">
+
+
+                <ListBox.ItemTemplate>
+                
+                <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBox IsReadOnly="True" Text="{Binding SelectedFunction.Fxy}" Grid.Column="0">
+                                
+                            </TextBox>
+                            <TextBox  x:Name="X"  Text="{Binding SelectedFunction.X, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding Test}"
+                                            PassEventArgsToCommand="True"
+                                            />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
+                            <TextBox x:Name="Y"  Text="{Binding SelectedFunction.Y, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding Test}"
+                                            PassEventArgsToCommand="True"
+                                            />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+        </DockPanel>
+        
     </Grid>
 </Window>
