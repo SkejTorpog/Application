@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Application"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Application" Height="550" Width="800" FontSize="18" Background="#FFE0E0E0">
 
@@ -26,17 +27,35 @@
                 </ListBox.ItemTemplate>
             </ListBox>
             <TextBlock Text="Аргумент А:" Margin="10,0"></TextBlock>
-            <TextBox 
-                Text="{Binding Path=SelectedModel.SelectedFunction.A,UpdateSourceTrigger=PropertyChanged}" 
+            <TextBox
+                x:Name="A"
+                Text="{Binding Path=SelectedModel.SelectedFunction.A, UpdateSourceTrigger=PropertyChanged}"
                 Margin="10,0"
                 FontSize="20"
                 Background="#FFF8F3FF">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction
+                            Command="{Binding Test}"
+                            PassEventArgsToCommand="True"
+                            />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </TextBox>
             <TextBlock Text="Аргумент B:" Margin="10,0"></TextBlock>
             <TextBox 
+                x:Name="B"
                 Text="{Binding Path=SelectedModel.SelectedFunction.B, UpdateSourceTrigger=PropertyChanged}"
                 Margin="10,0"
                 Background="#FFF8F3FF">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction
+                            Command="{Binding Test}"
+                            PassEventArgsToCommand="True"
+                            />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </TextBox>
             <TextBlock Text="Аргумент С:" Margin="10,0"></TextBlock>
             <ComboBox 
@@ -45,7 +64,6 @@
                 Margin="10,0">
             </ComboBox>
         </StackPanel>
-
         <DataGrid 
             ItemsSource="{Binding Models}" 
             SelectedItem="{Binding SelectedModel}" 
@@ -53,10 +71,21 @@
             AutoGenerateColumns="False" 
             Margin="10,10">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="*"
+                <DataGridTextColumn
+                    x:Name="X"
+                    Width="*"
                     Binding="{Binding Path=SelectedFunction.Fxy}" 
                     Header="F(x,y)" 
-                    IsReadOnly="True" />
+                    IsReadOnly="True">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction
+                            Command="{Binding Test}"
+                            PassEventArgsToCommand="True"
+                            />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </DataGridTextColumn>
                 <DataGridTextColumn Width="*"
                     Binding="{Binding Path=SelectedFunction.X, UpdateSourceTrigger=PropertyChanged}" 
                     Header="x" 
