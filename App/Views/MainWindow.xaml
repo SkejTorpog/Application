@@ -6,114 +6,114 @@
         xmlns:local="clr-namespace:Application"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="Application" Height="550" Width="800" FontSize="18" Background="#FFE0E0E0" MinHeight="500" MinWidth="250">
+        Title="Application" Height="550" Width="800" FontSize="18" Background="#FFE0E0E0" MinHeight="230">
 
-    <DockPanel LastChildFill="True">
-        <StackPanel DockPanel.Dock="Top">
-            <TextBlock Text="Функция:" Margin="10,0"/>
-            <ListBox 
-                ItemsSource="{Binding Path=SelectedModel.Functions}"
-                SelectedValue="{Binding Path=SelectedModel.SelectedFunction}"
-                Margin="10,0,10,10"
-                Background="#FFF8F3FF">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}"></TextBlock>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <TextBlock Text="Аргумент А:" Margin="10,0"></TextBlock>
-            <TextBox
-                x:Name="A"
-                Text="{Binding Path=SelectedModel.SelectedFunction.A, UpdateSourceTrigger=PropertyChanged}"
-                Margin="10,0"
-                FontSize="20"
-                Background="#FFF8F3FF">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="TextChanged">
-                        <i:InvokeCommandAction
-                            Command="{Binding SelectedModel.ValidateTextBoxCommand}"
-                            PassEventArgsToCommand="True"
-                            />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </TextBox>
-            <TextBlock Text="Аргумент B:" Margin="10,0"></TextBlock>
-            <TextBox 
-                x:Name="B"
-                Text="{Binding Path=SelectedModel.SelectedFunction.B, UpdateSourceTrigger=PropertyChanged}"
-                Margin="10,0"
-                Background="#FFF8F3FF">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="TextChanged">
-                        <i:InvokeCommandAction
-                            Command="{Binding SelectedModel.ValidateTextBoxCommand}"
-                            PassEventArgsToCommand="True"
-                            />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </TextBox>
-            <TextBlock Text="Аргумент С:" Margin="10,0"></TextBlock>
-            <ComboBox 
-                ItemsSource="{Binding Path=SelectedModel.Coefficients}" 
-                SelectedValue="{Binding Path=SelectedModel.SelectedFunction.C}"
-                Margin="10,0">
-            </ComboBox>
-        </StackPanel>
-        <DataGrid         
-            ItemsSource="{Binding Models}" 
-            SelectedItem="{Binding SelectedModel}" 
-            AutoGenerateColumns="False" 
-            Margin="10,10">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="F(x,y)" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate DataType="Model">
-                            <TextBox IsReadOnly="True" Text="{Binding Path=SelectedFunction.Fxy, UpdateSourceTrigger=PropertyChanged }">
-                            </TextBox>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="*" Header="X">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate DataType="Model">
-                            <TextBox x:Name="X" Text="{Binding Path=SelectedFunction.X, UpdateSourceTrigger=PropertyChanged }">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="TextChanged">
-                                        <i:InvokeCommandAction
-                                            Command="{Binding ValidateTextBoxCommand}"
-                                            PassEventArgsToCommand="True"
-                                            />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </TextBox>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="*" Header="Y">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate DataType="Model">
-                            <TextBox x:Name="Y" Text="{Binding Path=SelectedFunction.Y, UpdateSourceTrigger=PropertyChanged }">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="TextChanged">
-                                        <i:InvokeCommandAction
-                                            Command="{Binding ValidateTextBoxCommand}"
-                                            PassEventArgsToCommand="True"
-                                            />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </TextBox>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="*">
-                    <DataGridTemplateColumn.CellEditingTemplate>
+    <DockPanel>
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock Text="Функция:" Margin="10,0" />
+                <ListBox
+                    ItemsSource="{Binding Path=SelectedModel.Functions}"
+                    SelectedValue="{Binding Path=SelectedModel.SelectedFunction}"
+                    Margin="10,0,10,10"
+                    Background="#FFF8F3FF">
+                    <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock></TextBlock>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
                         </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <TextBlock Text="Аргумент А:" Margin="10,0"></TextBlock>
+                <TextBox
+                    x:Name="A"
+                    Text="{Binding Path=SelectedModel.SelectedFunction.A, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="10,0"
+                    Background="#FFF8F3FF">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction
+                                Command="{Binding SelectedModel.ValidateTextBoxCommand}"
+                                PassEventArgsToCommand="True"
+                            />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+                <TextBlock Text="Аргумент B:" Margin="10,0"></TextBlock>
+                <TextBox 
+                    x:Name="B"
+                    Text="{Binding Path=SelectedModel.SelectedFunction.B, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="10,0"
+                    Background="#FFF8F3FF">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction
+                                Command="{Binding SelectedModel.ValidateTextBoxCommand}"
+                                PassEventArgsToCommand="True"
+                            />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+                <TextBlock Text="Аргумент С:" Margin="10,0"></TextBlock>
+                <ComboBox 
+                    ItemsSource="{Binding Path=SelectedModel.Coefficients}" 
+                    SelectedValue="{Binding Path=SelectedModel.SelectedFunction.C}"
+                    Margin="10,0">
+                </ComboBox>
+                <DataGrid 
+                    ItemsSource="{Binding Models}" 
+                    SelectedItem="{Binding SelectedModel}" 
+                    AutoGenerateColumns="False" 
+                    Margin="10,10">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="F(x,y)" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate DataType="Model">
+                                    <TextBox IsReadOnly="True" Text="{Binding Path=SelectedFunction.Fxy, UpdateSourceTrigger=PropertyChanged }"></TextBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="*" Header="X">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate DataType="Model">
+                                    <TextBox x:Name="X" Text="{Binding Path=SelectedFunction.X, UpdateSourceTrigger=PropertyChanged }">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="TextChanged">
+                                                <i:InvokeCommandAction
+                                                    Command="{Binding ValidateTextBoxCommand}"
+                                                    PassEventArgsToCommand="True"
+                                                />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </TextBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="*" Header="Y">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate DataType="Model">
+                                    <TextBox x:Name="Y" Text="{Binding Path=SelectedFunction.Y, UpdateSourceTrigger=PropertyChanged }">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="TextChanged">
+                                                <i:InvokeCommandAction
+                                                    Command="{Binding ValidateTextBoxCommand}"
+                                                    PassEventArgsToCommand="True"
+                                                    />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </TextBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="*">
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <TextBlock></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </ScrollViewer>
     </DockPanel>
 </Window>
