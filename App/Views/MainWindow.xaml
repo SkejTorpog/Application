@@ -64,14 +64,61 @@
                 Margin="10,0">
             </ComboBox>
         </StackPanel>
-        <!--<DataGrid            
+        <DataGrid  IsSynchronizedWithCurrentItem="True"        
             ItemsSource="{Binding Models}" 
             SelectedItem="{Binding SelectedModel}" 
             Grid.Row="1" 
             AutoGenerateColumns="False" 
             Margin="10,10">
             <DataGrid.Columns>
-                <DataGridTextColumn
+                <DataGridTemplateColumn Header="TestFxy" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="Model">
+                            <TextBox IsReadOnly="True" Text="{Binding Path=SelectedFunction.Fxy, UpdateSourceTrigger=PropertyChanged }">
+                            </TextBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" Header="TextX">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="Model">
+                            <TextBox x:Name="X" Text="{Binding Path=SelectedFunction.X, UpdateSourceTrigger=PropertyChanged }">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding Test}"
+                                            PassEventArgsToCommand="True"
+                                            />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" Header="TextY">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="Model">  
+                            <TextBox x:Name="Y" Text="{Binding Path=SelectedFunction.Y, UpdateSourceTrigger=PropertyChanged }">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding Test}"
+                                            PassEventArgsToCommand="True"
+                                            />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBlock></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <!--<DataGridTextColumn
                     x:Name="X"
                     Width="*"
                     Binding="{Binding Path=SelectedFunction.Fxy}" 
@@ -84,10 +131,10 @@
                 <DataGridTextColumn Width="*"
                     Binding="{Binding Path=SelectedFunction.Y, UpdateSourceTrigger=PropertyChanged}" 
                     Header="y" 
-                    IsReadOnly="false"/>
+                    IsReadOnly="false"/>-->
             </DataGrid.Columns>
-        </DataGrid>-->
-        <DockPanel Grid.Row="1" >
+        </DataGrid>
+        <!--<DockPanel Grid.Row="1" >
             <ListBox DockPanel.Dock="Left"  Margin="10" ItemsSource="{Binding Models}" SelectedItem="{Binding SelectedModel}">
 
 
@@ -128,7 +175,7 @@
                 </ListBox.ItemTemplate>
 
             </ListBox>
-        </DockPanel>
+        </DockPanel>-->
         
     </Grid>
 </Window>
