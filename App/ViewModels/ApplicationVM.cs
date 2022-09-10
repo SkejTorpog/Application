@@ -5,6 +5,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Controls;
+using Application;
 
 namespace App.ViewModels
 {
@@ -37,8 +39,9 @@ namespace App.ViewModels
         /// </summary>
         public ApplicationVM()
         {
+            //Models = new List<Model>() { new Model() };
             Models = new List<Model>() { new Model() };
             _selectedModel = Models[0];
-        }        
+        }
     }
 }

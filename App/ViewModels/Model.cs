@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Application;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Controls;
 
 namespace App.Models
 {
@@ -84,11 +86,53 @@ namespace App.Models
         /// <param name="power">Степень числа</param>
         private void UpdateCoefficients(ObservableCollection<int> collection, int power)
         {
-            int value = (int)Math.Pow(10, power - 1);
+            var value = (int)Math.Pow(10, power - 1);
             for (int i = 0; i < collection.Count; i++)
             {
                 collection[i] = (i + 1) * value;
             }
+        }
+
+        /// <summary>
+        /// При некорректном вводе, возвращает в TextBox последнее корректно введеное значение.
+        /// </summary>
+        private RelayCommand validateTextBoxCommand;
+        public RelayCommand ValidateTextBoxCommand
+        {
+            get
+            {
+                return validateTextBoxCommand ?? (validateTextBoxCommand = new RelayCommand(obj =>
+                {
+                    var textbox = (TextBox)(((TextChangedEventArgs)obj).Source);
+                    var a = 0;
+                    if (!Int32.TryParse(textbox.Text, out a) && textbox.Text.Length != 0)
+                    {
+                        var currentCaretIndex = textbox.CaretIndex;
+                        textbox.Text = GetTextBoxValue(textbox.Name);
+                        textbox.CaretIndex = currentCaretIndex;
+                    }
+                }));
+            }
+        }
+
+        /// <summary>
+        /// Возвращает значение параметра привязанное к TextBox'у, в зависимости от имени TextBox'а.
+        /// </summary>
+        /// <param name="textBoxName">Имя TextBox'a</param>
+        private string GetTextBoxValue(string textBoxName)
+        {
+            switch (textBoxName)
+            {
+                case "A":
+                    return SelectedFunction.A.ToString();
+                case "B":
+                    return SelectedFunction.B.ToString();
+                case "X":
+                    return SelectedFunction.X.ToString();
+                case "Y":
+                    return SelectedFunction.Y.ToString();
+            }
+            return "";
         }
     }
 }
