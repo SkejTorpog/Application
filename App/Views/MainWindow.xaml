@@ -36,7 +36,7 @@
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="TextChanged">
                         <i:InvokeCommandAction
-                            Command="{Binding Test}"
+                            Command="{Binding SelectedModel.Test}"
                             PassEventArgsToCommand="True"
                             />
                     </i:EventTrigger>
@@ -51,7 +51,7 @@
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="TextChanged">
                         <i:InvokeCommandAction
-                            Command="{Binding Test}"
+                            Command="{Binding SelectedModel.Test}"
                             PassEventArgsToCommand="True"
                             />
                     </i:EventTrigger>

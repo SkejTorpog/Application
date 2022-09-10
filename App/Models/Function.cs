@@ -17,7 +17,7 @@ namespace App.Models
         private int _c;
         private int _x;
         private int _y;
-        private int _fxy;
+        private long _fxy;
 
         /// <summary>
         /// Возвращает и задает название функции. При изменении данного поля также пересчитывается значение F(x,y).
@@ -100,7 +100,7 @@ namespace App.Models
         /// <summary>
         /// Возвращает и задает значение Fxy.
         /// </summary>
-        public int Fxy
+        public long Fxy
         {
             get { return _fxy; }
             set
@@ -121,16 +121,16 @@ namespace App.Models
                     Fxy = A * X + B * 1 + C;
                     break;
                 case "Квадратичная":
-                    Fxy = A * (int)Math.Pow(X, 2) + B * Y + C;
+                    Fxy = A * (long)Math.Pow(X, 2) + B * Y + C;
                     break;
                 case "Кубическая":
-                    Fxy = A * (int)Math.Pow(X, 3) + B * (int)Math.Pow(Y, 2) + C;
+                    Fxy = A * (long)Math.Pow(X, 3) + B * (long)Math.Pow(Y, 2) + C;
                     break;
                 case "4-ой степени":
-                    Fxy = A * (int)Math.Pow(X, 4) + B * (int)Math.Pow(Y, 3) + C;
+                    Fxy = A * (long)Math.Pow(X, 4) + B * (long)Math.Pow(Y, 3) + C;
                     break;
                 case "5-ой степени":
-                    Fxy = A * (int)Math.Pow(X, 5) + B * (int)Math.Pow(Y, 4) + C;
+                    Fxy = A * (long)Math.Pow(X, 5) + B * (long)Math.Pow(Y, 4) + C;
                     break;
             }
         }

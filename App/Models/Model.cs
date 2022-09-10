@@ -86,33 +86,40 @@ namespace App.Models
         /// <param name="power">Степень числа</param>
         private void UpdateCoefficients(ObservableCollection<int> collection, int power)
         {
-            int value = (int)Math.Pow(10, power - 1);
+            var value = (int)Math.Pow(10, power - 1);
             for (int i = 0; i < collection.Count; i++)
             {
                 collection[i] = (i + 1) * value;
             }
         }
 
-        private RelayCommand test;
-        public RelayCommand Test
+        /// <summary>
+        /// При некорректном вводе, возвращает в TextBox последнее корректно введеное значение.
+        /// </summary>
+        private RelayCommand validateTextBoxCommand;
+        public RelayCommand ValidateTextBoxCommand
         {
             get
             {
-                return test ?? (test = new RelayCommand(obj =>
+                return validateTextBoxCommand ?? (validateTextBoxCommand = new RelayCommand(obj =>
                 {
                     var textbox = (TextBox)(((TextChangedEventArgs)obj).Source);
-                    int a;
+                    var a = 0;
                     if (!Int32.TryParse(textbox.Text, out a) && textbox.Text.Length != 0)
                     {
                         var currentCaretIndex = textbox.CaretIndex;
-                        textbox.Text = testMethod(textbox.Name);
+                        textbox.Text = GetTextBoxValue(textbox.Name);
                         textbox.CaretIndex = currentCaretIndex;
                     }
                 }));
             }
         }
 
-        private string testMethod(string textBoxName)
+        /// <summary>
+        /// Возвращает значение параметра привязанное к TextBox'у, в зависимости от имени TextBox'а.
+        /// </summary>
+        /// <param name="textBoxName">Имя TextBox'a</param>
+        private string GetTextBoxValue(string textBoxName)
         {
             switch (textBoxName)
             {
